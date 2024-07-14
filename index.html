@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="TrAME: Trajectory-Anchored Multi-View Editing for Text-Guided 3D Gaussian Splatting Manipulation">
+  <meta name="keywords" content="3D Gaussian Splatting">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TrAME: Trajectory-Anchored Multi-View Editing for Text-Guided 3D Gaussian Splatting Manipulation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+  <!-- <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div class="navbar-menu">
+      <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+        <!-- <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a> -->
+
+        <!-- <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div> -->
+
+      </div>
+  </nav>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">TrAME: Trajectory-Anchored Multi-View Editing for Text-Guided 3D
+              Gaussian Splatting Manipulation</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="">Chaofan Luo</a><sup>1,2</sup>,</span>
+              <span class="author-block">
+                <a href="">Donglin Di</a><sup>*1</sup>,</span>
+              <span class="author-block">
+                <a href="">Yongjia Ma</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Zhou Xue</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Wei Chen</a><sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Xun Yang</a><sup>*2</sup>,
+              </span>
+              <span class="author-block">
+                <a href="">Yebin Liu</a><sup>3</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Space AI, Li Auto;</span>
+              <span class="author-block"><sup>2</sup>University of Science and Technology of China;</span>
+              <span class="author-block"><sup>3</sup>Tsinghua University</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <!-- <span class="link-block">
+                <a href="https://arxiv.org/pdf/2407.02034"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span> -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/pdf/2407.02034" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Video Link. -->
+                <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code (Coming Soon)</span>
+                  </a>
+                </span>
+                <!-- Dataset Link. -->
+                <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                  </a> -->
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop playsinline height="100%">
+          <source src="./static/videos/teaser.mp4" type="video/mp4">
+        </video>
+        <h2 class="subtitle has-text-centered">
+          <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
+          free-viewpoint
+          portraits.
+        </h2>
+      </div>
+    </div>
+  </section> -->
+
+
+  <!-- <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="item item-steve">
+            <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/steve.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-chair-tp">
+            <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/chair-tp.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-shiba">
+            <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/shiba.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-fullbody">
+            <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/fullbody.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-blueshirt">
+            <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/blueshirt.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-mask">
+            <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/mask.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-coffee">
+            <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/coffee.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item item-toby">
+            <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/toby2.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Despite significant strides in the field of 3D scene editing, current methods encounter substantial
+              challenge, particularly in preserving 3D consistency in multiview editing process. To tackle this
+              challenge, we propose a progressive 3D editing strategy that ensures multi-view consistency via a
+              Trajectory-Anchored Scheme (TAS) with a dual-branch editing mechanism. Specifically, TAS facilitates a
+              tightly coupled iterative process between 2D view editing and 3D updating, preventing
+              error accumulation yielded from text-to-image process. Additionally, we explore the relationship between
+              optimization-based methods and reconstruction-based methods, offering a unified perspective for selecting
+              superior design choice, supporting the rationale behind the designed TAS. We further present a tuning-free
+              View-Consistent Attention Control (VCAC) module that leverages cross-view semantic and geometric reference
+              from the source branch to yield aligned views from the target branch during the editing of 2D views. To
+              validate the effectiveness of our method, we analyze 2D examples to demonstrate the improved consistency
+              with the VCAC module. Further extensive quantitative and qualitative results in text-guided 3D scene
+              editing indicate that our method achieves superior editing quality compared to state-of-the-art methods.
+              Our code is available at [this url](https://github.com/fkcptlst/TrAME).
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <!-- Paper video. -->
+      <!-- <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Video</h2>
+          <div class="publication-video">
+            <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0" frameborder="0"
+              allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div> -->
+      <!--/ Paper video. -->
+
+      <!-- Architecture -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+
+          <h2 class="title is-3">Architecture</h2>
+          <div class="content has-text-justified">
+
+            <figure class="image">
+              <img src="./static/images/framework.png" alt="TrAME architecture." />
+            </figure>
+            <p>
+              Illustration of the proposed method, Trajectory-Anchored Multi-View Editing for 3D
+              Gaussian Splatting Manipulation (TrAME). Our method comprises a Trajectory Anchored Scheme
+              (TAS) as well as a View-Consistent Attention Control (VCAC) module. Given a source prompt,
+              a target prompt and the original 3DGS θ(0) as input, the VCAC module can yield 3D-consistent
+              and progressively edited views with a single-step inference to update 3DGS. Conversely, the views
+              rendered from the updated 3DGS correct minor inconsistencies from previous view edits and serve
+              as inputs for subsequent steps, thereby preventing error accumulation from the 2D editing process.
+              This process alternatively update the 2D views and 3DGS in a synchronized and progressive manner,
+              producing the final edited 3DGS θ(T).
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Architecture -->
+
+      <!-- Additional Results -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Additional Results</h2>
+          <div class="columns is-multiline is-centered">
+            <div class="column is-one-quarter">
+              <div class="publication-video">
+                <video controls>
+                  <source src="./static/videos/face_original.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>Original</p>
+            </div>
+            <div class="column is-one-quarter">
+              <div class="publication-video">
+                <video controls>
+                  <source src="./static/videos/einstein.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>"Einstein"</p>
+            </div>
+            <div class="column is-one-quarter">
+              <div class="publication-video">
+                <video controls>
+                  <source src="./static/videos/modigliani.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>"Modigliani style"</p>
+            </div>
+            <div class="column is-one-quarter">
+              <div class="publication-video">
+                <video controls>
+                  <source src="./static/videos/young_man.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>"Young man"</p>
+            </div>
+            <div class="column is-one-quarter">
+              <div class="publication-video">
+                <video controls>
+                  <source src="./static/videos/person_original.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>Original</p>
+            </div>
+            <div class="column is-one-quarter">
+              <div class="publication-video">
+                <video controls>
+                  <source src="./static/videos/robot.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>"Robot"</p>
+            </div>
+            <div class="column is-one-quarter">
+              <div class="publication-video">
+                <video controls>
+                  <source src="./static/videos/spiderman.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>"Spider-Man"</p>
+            </div>
+            <div class="column is-one-quarter">
+              <div class="publication-video">
+                <video controls>
+                  <source src="./static/videos/ironman.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>"Ironman"</p>
+            </div>
+            <div class="column is-one-quarter">
+              <div class="publication-video">
+                <video controls>
+                  <source src="./static/videos/fangzhou_original.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>Original</p>
+            </div>
+            <div class="column is-one-quarter">
+              <div class="publication-video">
+                <video controls>
+                  <source src="./static/videos/elf.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>"Elf"</p>
+            </div>
+            <div class="column is-one-quarter">
+              <div class="publication-video">
+                <video controls>
+                  <source src="./static/videos/hulk.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>"Hulk"</p>
+            </div>
+            <div class="column is-one-quarter">
+              <div class="publication-video">
+                <video controls>
+                  <source src="./static/videos/van_gogh.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <p>"Vincent Van Gogh style"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--/ Additional Results -->
+    </div>
+  </section>
+
+
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{luo2024trame,
+                  title={TrAME: Trajectory-Anchored Multi-View Editing for Text-Guided 3D Gaussian Splatting Manipulation},
+                  author={Luo, Chaofan and Di, Donglin and Ma, Yongjia and Xue, Zhou and Wei, Chen and Yang, Xun and Liu, Yebin},
+                  journal={arXiv preprint arXiv:2407.02034},
+                  year={2024}
+                }</code></pre>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="https://arxiv.org/pdf/2407.02034">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/fkcptlst/TrAME" class="external-link" disabled>
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This website is adapted from <a href="https://nerfies.github.io">Nerfies</a> under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+            <p>
+              This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source
+                code</a> of this website,
+              we just ask that you link back to this page in the footer.
+              Please remember to remove the analytics code included in the header of the website which
+              you do not want on your website.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
