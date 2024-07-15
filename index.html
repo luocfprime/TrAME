@@ -171,72 +171,6 @@
     </div>
   </section>
 
-  <!-- <section class="hero teaser">
-    <div class="container is-max-desktop">
-      <div class="hero-body">
-        <video id="teaser" autoplay muted loop playsinline height="100%">
-          <source src="./static/videos/teaser.mp4" type="video/mp4">
-        </video>
-        <h2 class="subtitle has-text-centered">
-          <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-          free-viewpoint
-          portraits.
-        </h2>
-      </div>
-    </div>
-  </section> -->
-
-
-  <!-- <section class="hero is-light is-small">
-    <div class="hero-body">
-      <div class="container">
-        <div id="results-carousel" class="carousel results-carousel">
-          <div class="item item-steve">
-            <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/steve.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-chair-tp">
-            <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/chair-tp.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-shiba">
-            <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/shiba.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-fullbody">
-            <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/fullbody.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-blueshirt">
-            <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/blueshirt.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-mask">
-            <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/mask.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-coffee">
-            <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/coffee.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="item item-toby">
-            <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/toby2.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-
   <section class="section">
     <div class="container is-max-desktop">
       <!-- Abstract. -->
@@ -258,171 +192,165 @@
               validate the effectiveness of our method, we analyze 2D examples to demonstrate the improved consistency
               with the VCAC module. Further extensive quantitative and qualitative results in text-guided 3D scene
               editing indicate that our method achieves superior editing quality compared to state-of-the-art methods.
-              Our code is available at <a href="https://github.com/fkcptlst/TrAME">this url</a>.
+              Our code will be available at <a href="https://github.com/fkcptlst/TrAME">this url</a>.
             </p>
           </div>
         </div>
       </div>
       <!--/ Abstract. -->
-
-      <!-- Paper video. -->
-      <!-- <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Video</h2>
-          <div class="publication-video">
-            <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0" frameborder="0"
-              allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div> -->
-      <!--/ Paper video. -->
-
-      <!-- Architecture -->
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-
-          <h2 class="title is-3">Architecture</h2>
-          <div class="content has-text-justified">
-
-            <figure class="image">
-              <img src="./static/images/framework.png" alt="TrAME architecture." />
-            </figure>
-            <p>
-              Illustration of the proposed method, Trajectory-Anchored Multi-View Editing for 3D
-              Gaussian Splatting Manipulation (TrAME). Our method comprises a Trajectory Anchored Scheme
-              (TAS) as well as a View-Consistent Attention Control (VCAC) module. Given a source prompt,
-              a target prompt and the original 3DGS θ(0) as input, the VCAC module can yield 3D-consistent
-              and progressively edited views with a single-step inference to update 3DGS. Conversely, the views
-              rendered from the updated 3DGS correct minor inconsistencies from previous view edits and serve
-              as inputs for subsequent steps, thereby preventing error accumulation from the 2D editing process.
-              This process alternatively update the 2D views and 3DGS in a synchronized and progressive manner,
-              producing the final edited 3DGS θ(T).
-            </p>
-          </div>
-        </div>
-      </div>
-      <!--/ Architecture -->
-
-      <!-- Additional Results -->
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Additional Results</h2>
-          <div class="columns is-multiline is-centered">
-            <div class="column is-one-quarter">
-              <div class="publication-video">
-                <video controls>
-                  <source src="./static/videos/face_original.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p>Original</p>
-            </div>
-            <div class="column is-one-quarter">
-              <div class="publication-video">
-                <video controls>
-                  <source src="./static/videos/einstein.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p>"Einstein"</p>
-            </div>
-            <div class="column is-one-quarter">
-              <div class="publication-video">
-                <video controls>
-                  <source src="./static/videos/modigliani.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p>"Modigliani style"</p>
-            </div>
-            <div class="column is-one-quarter">
-              <div class="publication-video">
-                <video controls>
-                  <source src="./static/videos/young_man.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p>"Young man"</p>
-            </div>
-            <div class="column is-one-quarter">
-              <div class="publication-video">
-                <video controls>
-                  <source src="./static/videos/person_original.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p>Original</p>
-            </div>
-            <div class="column is-one-quarter">
-              <div class="publication-video">
-                <video controls>
-                  <source src="./static/videos/robot.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p>"Robot"</p>
-            </div>
-            <div class="column is-one-quarter">
-              <div class="publication-video">
-                <video controls>
-                  <source src="./static/videos/spiderman.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p>"Spider-Man"</p>
-            </div>
-            <div class="column is-one-quarter">
-              <div class="publication-video">
-                <video controls>
-                  <source src="./static/videos/ironman.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p>"Ironman"</p>
-            </div>
-            <div class="column is-one-quarter">
-              <div class="publication-video">
-                <video controls>
-                  <source src="./static/videos/fangzhou_original.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p>Original</p>
-            </div>
-            <div class="column is-one-quarter">
-              <div class="publication-video">
-                <video controls>
-                  <source src="./static/videos/elf.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p>"Elf"</p>
-            </div>
-            <div class="column is-one-quarter">
-              <div class="publication-video">
-                <video controls>
-                  <source src="./static/videos/hulk.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p>"Hulk"</p>
-            </div>
-            <div class="column is-one-quarter">
-              <div class="publication-video">
-                <video controls>
-                  <source src="./static/videos/van_gogh.mp4" type="video/mp4">
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-              <p>"Vincent Van Gogh style"</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--/ Additional Results -->
     </div>
   </section>
 
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+
+        <!-- Architecture -->
+        <h2 class="title is-3">Architecture</h2>
+        <div class="content has-text-justified">
+
+          <figure class="image">
+            <img src="./static/images/framework.png" alt="TrAME architecture." />
+          </figure>
+          <p>
+            Illustration of the proposed method, Trajectory-Anchored Multi-View Editing for 3D
+            Gaussian Splatting Manipulation (TrAME). Our method comprises a Trajectory Anchored Scheme
+            (TAS) as well as a View-Consistent Attention Control (VCAC) module. Given a source prompt,
+            a target prompt and the original 3DGS θ(0) as input, the VCAC module can yield 3D-consistent
+            and progressively edited views with a single-step inference to update 3DGS. Conversely, the views
+            rendered from the updated 3DGS correct minor inconsistencies from previous view edits and serve
+            as inputs for subsequent steps, thereby preventing error accumulation from the 2D editing process.
+            This process alternatively update the 2D views and 3DGS in a synchronized and progressive manner,
+            producing the final edited 3DGS θ(T).
+          </p>
+        </div>
+        <!--/ Architecture -->
+
+        <!-- Additional Results -->
+        <h2 class="title is-3">Additional Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            For comparison with the baseline methods, please refer to our paper.
+          </p>
+        </div>
+        <div class="columns is-multiline is-centered">
+          <div class="column is-one-quarter">
+            <div class="publication-video">
+              <video controls>
+                <source src="./static/videos/face_original.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>Original</p>
+          </div>
+          <div class="column is-one-quarter">
+            <div class="publication-video">
+              <video controls>
+                <source src="./static/videos/einstein.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>"Einstein"</p>
+          </div>
+          <div class="column is-one-quarter">
+            <div class="publication-video">
+              <video controls>
+                <source src="./static/videos/modigliani.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>"Modigliani style"</p>
+          </div>
+          <div class="column is-one-quarter">
+            <div class="publication-video">
+              <video controls>
+                <source src="./static/videos/young_man.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>"Young man"</p>
+          </div>
+          <div class="column is-one-quarter">
+            <div class="publication-video">
+              <video controls>
+                <source src="./static/videos/person_original.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>Original</p>
+          </div>
+          <div class="column is-one-quarter">
+            <div class="publication-video">
+              <video controls>
+                <source src="./static/videos/robot.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>"Robot"</p>
+          </div>
+          <div class="column is-one-quarter">
+            <div class="publication-video">
+              <video controls>
+                <source src="./static/videos/spiderman.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>"Spider-Man"</p>
+          </div>
+          <div class="column is-one-quarter">
+            <div class="publication-video">
+              <video controls>
+                <source src="./static/videos/ironman.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>"Ironman"</p>
+          </div>
+          <div class="column is-one-quarter">
+            <div class="publication-video">
+              <video controls>
+                <source src="./static/videos/fangzhou_original.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>Original</p>
+          </div>
+          <div class="column is-one-quarter">
+            <div class="publication-video">
+              <video controls>
+                <source src="./static/videos/elf.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>"Elf"</p>
+          </div>
+          <div class="column is-one-quarter">
+            <div class="publication-video">
+              <video controls>
+                <source src="./static/videos/hulk.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>"Hulk"</p>
+          </div>
+          <div class="column is-one-quarter">
+            <div class="publication-video">
+              <video controls>
+                <source src="./static/videos/van_gogh.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <p>"Vincent Van Gogh style"</p>
+          </div>
+        </div>
+        <!--/ Additional Results -->
+
+
+
+      </div>
+    </div>
+  </section>
 
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
