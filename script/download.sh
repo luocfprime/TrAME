@@ -1,0 +1,1 @@
+huggingface-cli download Yiwen-ntu/GaussianEditor_Result --repo-type dataset --local-dir .

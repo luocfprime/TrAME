@@ -1,0 +1,224 @@
+name: "edit-ta"
+tag: "${rmspace:${system.guidance.prompt},_}"
+exp_root_dir: "outputs"
+seed: 0
+
+data_type: "gs-load"
+data:
+  batch_size: 4
+  source: ???
+  max_view_num: ${prod:${data.batch_size},${data.batch_size},4} # (batch_size ** 2) * k
+  eval_camera_distance: 4.0
+  camera_distance_range: [1.5, 4.0]
+#  light_sample_strategy: "dreamfusion3dgs"
+  n_val_views: 32 #16  # ${data.max_view_num}
+  height: 512
+  width: 512
+  use_trajectory_anchored_train_dataset: True
+  num_inference_steps: 20
+  init_inference_step: 10
+
+  random_shuffle_views: False
+
+  elevation_view_num: 2
+  azimuth_view_num: 8
+  # elevation_range: [-10 , 80]
+
+  context_max_angle_diff: 25.0  # in degrees
+
+  churn_indices: ${system.guidance.churn_indices}
+
+  keyframe_shuffle: true
+
+  opacity_reset_interval: 350
+  opacity_restore_interval: 400
+  opacity_reset_until: 2000
+
+  reset_gs_enabled: ${system.reset_gs_enabled}
+  reset_gs_at: ${system.reset_gs_at}  # in terms of inference step
+
+  per_editing_step_schedule_cfg:
+    name: piecewise_linear
+    args:
+      pts: # [img_inference_step, per_editing_step]
+#      # no update
+#        - [ 0, 0 ]
+#        - [ 20, 0 ]
+
+#        - [ 0, 0 ]
+#        - [ 11, 0 ]  # start from 17
+#        - [ 12, 15 ]
+#        - [ 13, 15 ]
+#        - [ 14, 10 ]
+#        - [ 16, 10 ]
+#        - [ 17, 30 ]
+#        - [ 18, 10 ]
+#        - [ 19, 10 ]
+#        - [ 20, 30 ]
+
+## for spider man
+#        - [ 0, 0 ]
+#        - [ 14, 0 ]
+#        - [ 15, 20 ]  # start from 7
+#        - [ 20, 20 ]
+
+# for polar bear
+#        - [ 0, 0 ]
+#        - [ 9, 0 ]  # start from 18
+#        - [ 10, 30 ]
+#        - [ 20, 30 ]
+
+# for bike
+        - [ 0, 0 ]
+        - [ 9, 0 ]  # start from 18
+        - [ 10, 20 ]
+        - [ 20, 20 ]
+
+system_type: "ta-gsedit-system-edit"
+system:
+  gs_source: ???
+  edit_begin_step: 0
+  densify_until_iter: 7001
+  densify_from_iter: 500  # note that iter is referring to gs_update_step_accum in this case
+  densification_interval: 500
+  max_grad: 5
+  min_opacity: 0.005
+  #  prompt_processor_type: "stable-diffusion-prompt-processor"
+  #  prompt_processor:
+  #    pretrained_model_name_or_path: "runwayml/stable-diffusion-v1-5"
+  #    prompt: 'a bicycle parked next to a bench in a park, all covered with snow, winter'
+  edit_until_step: 999999
+
+  opacity_reset_max: 0.01
+
+  reset_gs_enabled: false
+  reset_gs_at: []
+#  reset_gs_at: [8, 10, 12, 14, 16, 18, 20]
+
+  masked_loss: true
+
+  guidance_type: "infedit-guidance"
+  guidance:
+    guidance_scale: 2.0
+    source_guidance_scale: 1.0
+    batch_size: ${data.batch_size}
+    num_inference_steps: ${data.num_inference_steps}
+
+    prompt: "a face of a clown"
+    source_prompt: "a face of a person"
+
+    negative_prompt: "blurry, foggy, low resolution"
+
+    self_kv_edit_step_thresh: 0.1
+    self_q_edit_step_thresh: 0.5
+    cross_edit_step_thresh: 0.7
+
+    original_blend_factor: 1.0 # disabled
+    original_blend_start: 0
+    original_blend_until: 20
+
+    churn_indices:
+      - [ 0, 20 ]  # no churn
+
+#      - [ 0, 16 ]  # 16
+#      - [ 12, 20 ]  # 5
+#      - [ 13, 20 ]  # 5
+#      - [ 14, 19 ]  # 5
+#      - [ 17, 20 ]  # 3
+
+
+    error_compensation_cfg:
+      name: piecewise_linear
+      args:
+        pts:  # 11->459, 12->399, 13->359, 14->299, 15->259, 16->199, 17->159, 18->99, 19->59
+#          # full compensation
+#          - [ 0, 1.0 ]
+#          - [ 20, 1.0 ]
+
+#          - [ 0, 1.0 ]
+#          - [ 18, 1.0 ]  # no inject at this step (start from 16)
+#          - [ 19, 0.0 ]
+#          - [ 20, 0.0 ]
+
+#          - [ 0, 1.0 ]
+#          - [ 12, 1.0 ]  # no inject at this step (start from 16)
+#          - [ 13, 0.0 ]
+#          - [ 20, 0.0 ]
+
+# for polar bear
+#          - [ 0, 1.0 ]
+#          - [ 10, 1.0 ]  # no inject at this step (start from 18)
+#          - [ 11, 0.3 ]
+#          - [ 20, 0.3 ]
+
+## for spider man
+#          - [ 0, 1.0 ]
+#          - [ 15, 1.0 ]  # no inject at this step (start from 18)
+#          - [ 16, 0.6 ]
+#          - [ 19, 0.0 ]
+#          - [ 20, 0.0 ]
+
+# for bike
+          - [ 0, 1.0 ]
+          - [ 10, 1.0 ]  # no inject at this step (start from 18)
+          - [ 11, 0.3 ]
+          - [ 20, 0.3 ]
+
+  loggers:
+    wandb:
+      enable: false
+      project: 'threestudio_gs'
+      name: None
+
+  loss:
+    #    lambda_opaque: 0.0
+    lambda_sparsity: 0.0
+    lambda_opaque: 0.0
+    lambda_l1: 10.
+    lambda_p: 10.
+    lambda_anchor_color: 0
+    lambda_anchor_geo: 50
+    lambda_anchor_opacity: 50  # 50 -> 0
+    lambda_anchor_scale: 200
+    lambda_move: 0
+    lambda_alpha: 0
+    lambda_scale: 0
+
+#  gs_lr_scaler: 1.0  # xyz lr
+#  gs_final_lr_scaler: 0.1  # xyz lr
+  color_rest_lr_scaler: 0.1  # TODO
+
+  gradient_clip:
+    xyz: 10.0  # 14 -> 10
+    opacity: 0.06
+    scaling: 0.13
+    rotation: 0.68
+    features: 0.24
+
+
+  optimizer:
+    name: Adam
+    args:
+      lr: 0.001
+      betas: [0.9, 0.99]
+      eps: 1.e-15
+
+  exporter:
+    save_video: true
+
+trainer:
+  accumulate_grad_batches: 4
+  max_steps: 2000  # TODO
+#  max_epochs: 1
+  log_every_n_steps: 1
+  num_sanity_val_steps: 0
+  val_check_interval: 100
+  enable_progress_bar: true
+  precision: 16-mixed
+
+checkpoint:
+  save_last: false # save at each validation time
+  save_top_k: -1
+  #  every_n_train_steps: ${trainer.max_steps}
+  every_n_epochs: 1
+# white_background: true

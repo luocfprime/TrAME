@@ -1,0 +1,153 @@
+name: "edit-ta-ablation-clown"
+description: ''
+tag: a_face_of_a_clown
+seed: 0
+use_timestamp: true
+#timestamp: '@20240517-140136'
+exp_root_dir: outputs
+exp_dir: outputs/edit-ta
+#trial_name: a_face_of_a_clown@20240517-140136
+#trial_dir: outputs/edit-ta/a_face_of_a_clown@20240517-140136
+n_gpus: 1
+resume: null
+data_type: gs-load
+data:
+  batch_size: 4
+  source: ???
+  max_view_num: 64
+  eval_camera_distance: 4.0
+  camera_distance_range:
+  - 1.5
+  - 4.0
+  n_val_views: 32
+  height: 512
+  width: 512
+  use_trajectory_anchored_train_dataset: true
+  num_inference_steps: 20
+  init_inference_step: 10
+  random_shuffle_views: false
+  elevation_view_num: 2
+  azimuth_view_num: 8
+  context_max_angle_diff: 25.0
+  churn_indices:
+  - - 0
+    - 20
+  keyframe_shuffle: true
+  opacity_reset_interval: 350
+  opacity_restore_interval: 400
+  opacity_reset_until: 2001
+  reset_gs_enabled: false
+  reset_gs_at:
+  - 16
+  - 18
+  per_editing_step_schedule_cfg:
+    name: piecewise_linear
+    args:
+      pts:
+      - - 0
+        - 0
+      - - 13
+        - 0
+      - - 18
+        - 0
+      - - 19
+        - 25
+system_type: ta-gsedit-system-edit
+system:
+  gs_source: ???
+  edit_begin_step: 0
+  densify_until_iter: 2001
+  densify_from_iter: 500
+  densification_interval: 500
+  max_grad: 5
+  min_opacity: 0.005
+  edit_until_step: 999999
+  opacity_reset_max: 0.01
+  reset_gs_enabled: false
+  reset_gs_at:
+  - 16
+  - 18
+  masked_loss: true
+  guidance_type: infedit-guidance
+  guidance:
+    guidance_scale: 2.0
+    source_guidance_scale: 1.0
+    batch_size: 4
+    num_inference_steps: 20
+    prompt: a face of a clown
+    source_prompt: a face of a person
+    negative_prompt: blurry, foggy, low resolution
+    self_kv_edit_step_thresh: 0.0
+    self_q_edit_step_thresh: 0.5
+    cross_edit_step_thresh: 0.7
+    original_blend_factor: 1.0
+    original_blend_start: 0
+    original_blend_until: 20
+    churn_indices:
+    - - 0
+      - 20
+    error_compensation_cfg:
+      name: piecewise_linear
+      args:
+        pts:
+        - - 0
+          - 1.0
+        - - 20
+          - 1.0
+  loggers:
+    wandb:
+      enable: false
+      project: threestudio_gs
+      name: edit_ta_face_clown
+  loss:
+    lambda_sparsity: 0.0
+    lambda_opaque: 0.0
+    lambda_l1: 10.0
+    lambda_p: 10.0
+    lambda_anchor_color: 0
+    lambda_anchor_geo: 50
+    lambda_anchor_opacity: 50
+    lambda_anchor_scale: 200
+    lambda_move: 0
+    lambda_alpha: 0
+    lambda_scale: 0
+  color_rest_lr_scaler: 0.01
+  color_lr_scaler: 5
+  gradient_clip:
+    xyz: 10.0
+    opacity: 0.06
+    scaling: 0.13
+    rotation: 0.68
+    features: 0.24
+  optimizer:
+    name: Adam
+    args:
+      lr: 0.001
+      betas:
+      - 0.9
+      - 0.99
+      eps: 1.0e-15
+  exporter:
+    save_video: true
+  max_densify_percent: 0.01
+  anchor_weight_init_g0: 0.05
+  anchor_weight_init: 0.1
+  anchor_weight_multiplier: 1.3
+  gs_lr_scaler: 5
+  gs_final_lr_scaler: 5
+  opacity_lr_scaler: 2
+  scaling_lr_scaler: 2
+  rotation_lr_scaler: 2
+  seg_prompt: a person
+trainer:
+  accumulate_grad_batches: 4
+  max_steps: 250
+  log_every_n_steps: 1
+  num_sanity_val_steps: 0
+  val_check_interval: 100
+  enable_progress_bar: true
+  precision: 16-mixed
+checkpoint:
+  save_last: false
+  save_top_k: -1
+  every_n_epochs: 1
