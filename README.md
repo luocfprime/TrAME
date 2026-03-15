@@ -1,13 +1,18 @@
-# TrAME: Trajectory-Anchored Multi-View Editing for Text-Guided 3D Gaussian Splatting Manipulation
+# TrAME: Trajectory-Anchored Multi-View Editing for Text-Guided 3D Gaussian Manipulation
 
 
 If you find this useful for your work please cite:
 ```
-@article{luo2024trame,
-  title={TrAME: Trajectory-Anchored Multi-View Editing for Text-Guided 3D Gaussian Splatting Manipulation},
-  author={Luo, Chaofan and Di, Donglin and Ma, Yongjia and Xue, Zhou and Wei, Chen and Yang, Xun and Liu, Yebin},
-  journal={arXiv preprint arXiv:2407.02034},
-  year={2024}
+@ARTICLE{10964679,
+  author={Luo, Chaofan and Di, Donglin and Yang, Xun and Ma, Yongjia and Xue, Zhou and Chen, Wei and Gou, Xiaofei and Liu, Yebin},
+  journal={IEEE Transactions on Multimedia},
+  title={TrAME: Trajectory-Anchored Multi-View Editing for Text-Guided 3D Gaussian Manipulation},
+  year={2025},
+  volume={27},
+  number={},
+  pages={2886-2898},
+  keywords={Three-dimensional displays;Image reconstruction;Noise;Noise reduction;Semantics;Optimization;Diffusion models;Schedules;Iterative methods;Text to image;Attention mechanism;diffusion models;3D scene editing;3D Gaussian splatting},
+  doi={10.1109/TMM.2025.3557618}
 }
 ```
 
